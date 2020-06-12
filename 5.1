@@ -1,0 +1,52 @@
+"""
+Exercise 1: Write a program which repeatedley reads number until the user enters "done". Once done print out the total,
+count, and average of numbers. If anything but a number is entered inform the user and reprompt for the next number.
+"""
+
+list_of_num = []
+
+while True:
+    done = ""
+    number = input("Please enter a number or type 'done' when finished: ")
+
+    # converts word to lowercase
+    for i in number:
+        if i.isupper() == True:
+            done += i.lower()
+        elif i.islower() == True:
+            done += i
+
+    # checks to see if user is done
+    if done == "done":
+        break
+
+    # checks to make sure a number was used
+    try:
+        number = float(number)
+    except ValueError:
+        print("Please input a number or type 'done' when you are finished.")
+        continue
+
+    # adds number to list
+    list_of_num.append(number)
+
+#
+
+count = 0
+total = 0
+
+# counts number of numbers entered and totals them
+for j in list_of_num:
+    count += 1
+    total += j
+
+# averages the info and checks for zero division
+try:
+    average = total / count
+except ZeroDivisionError:
+    average = 0
+
+# prints out info
+print("Count", count)
+print("Total", total)
+print("Average", average)
